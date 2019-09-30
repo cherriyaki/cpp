@@ -7,7 +7,6 @@ using std::ostream;
 
 #include <string>
 using std::string;
-<<<<<<< HEAD
 
 #include <cmath>
 
@@ -31,29 +30,12 @@ private:
 
 public:
     /* constructor */
-=======
-
-// TODO: your code  goes here
-
-class Item
-{
-private:
-    double latitude;
-    double longitude;
-    string id;
-    int seconds;
-
-public:
->>>>>>> 423fe8765de7d4fbfafced9126d467557231bf00
     Item(double inLatitude, double inLongitude, string inID, int inSeconds)
         : latitude(inLatitude), longitude(inLongitude), id(inID), seconds(inSeconds)
     {
     }
 
-<<<<<<< HEAD
     /* get methods */
-=======
->>>>>>> 423fe8765de7d4fbfafced9126d467557231bf00
     double getLat() const
     {
         return latitude;
@@ -73,7 +55,6 @@ public:
     {
         return seconds;
     }
-<<<<<<< HEAD
 
     /* class method */
     double distanceTo(const Item &inItem)
@@ -106,16 +87,6 @@ ostream &operator<<(ostream &out, const Item &item)
         << ", " << item.getSeconds() << "}";
     return out;
 }
-=======
-};
-
-ostream &operator<<(ostream &out, const Item &item)
-    {
-        out << "{" << item.getLat() << ", " << item.getLong() << ", " << "\"" << item.getID() << "\"" << ", " << item.getSeconds() << "}"
-            << "\n";
-        return out;
-    }
->>>>>>> 423fe8765de7d4fbfafced9126d467557231bf00
 
 // don't write any code below this line
 
