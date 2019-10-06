@@ -6,19 +6,70 @@
 #include <iostream>
 
 /** TODO: complete the definition of the class CircularBuffer here
- *
- * Its constructor should take the size of the buffer as an argument
- *
- * It needs to have the functions:
- * - count() which returns how many things are in the buffer
- * - full() which returns true iff the buffer is full
- * - add() which takes an element and adds it to the buffer (you can assume the buffer is not full)
- * - remove() which removes the next element from the buffer (you can assume the buffer is not empty)
  */
-class CircularBuffer {
+class CircularBuffer
+{
 
+private:
+    int n = 0;
+    int size = 0;
+    int oldest = 0;
+    int next = 0;
+    SimpleVector<char> sv;
+
+public:
+    /*  
+    CircularBuffer(int inN)
+        : vector(new SimpleVector<char>(inN)), n(inN)
+    {
+        for (int i = 0; i < n; ++i)
+        {
+            vector[i] = ' ';
+        }
+    }
+    */
+
+    CircularBuffer(int inN)
+        : n(inN), sv(n)
+    {
+        // SimpleVector<char> v(n);
+        for (int i = 0; i < n; ++i)
+        {
+            sv[i] = ' ';
+        }
+        // sv = &v;
+    }
+    // REVIEW why ++ first
+    void add(char inChar)
+    {
+        sv[next] = inChar;
+        next = (next + 1) % n;
+        size++;
+    }
+
+    int count()
+    {
+        return size;
+    }
+
+    bool full()
+    {
+        if (size == n)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+    char remove()
+    {
+        char removed = sv[oldest];
+        sv[oldest] = ' ';
+        oldest = (oldest + 1) % n;
+        size--;
+        return removed;
+    }
 };
-
 
 // don't write any code below this line
 
