@@ -4,6 +4,10 @@
 #include <vector>
 using std::vector;
 
+#include <algorithm>
+using std::reverse;
+using std::sort;
+
 /** @brief Class that describes how to sort a nearly-sorted vector */
 class HowToSort
 {
