@@ -103,13 +103,13 @@ HowToSort nearlySorted(vector<int> inV)
     bool reverseWorks = false;
 
     for (int i = 0; i < n; ++i)
+    {
         reverseWorks = (reversed[i] == sorted[i]);
+        if (!reverseWorks)
+            return HowToSort();
+    }
 
-    if (reverseWorks)
-        return HowToSort(diff[0], diff.back(), false);
-
-    else
-        return HowToSort();
+    return HowToSort(diff[0], diff.back(), false);
 }
 
 // Don't write any code below this line
