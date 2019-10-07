@@ -67,6 +67,8 @@ public:
         sv[oldest] = ' ';
         oldest = (oldest + 1) % n;
         size--;
+        if (size == 0)
+            next = 0;
         return removed;
     }
 };
