@@ -42,29 +42,31 @@ public:
 
     void setLeftChild(TreeNode *child)
     {
-        (*child).setParent(this);
+        // (*child).setParent(this);
         leftChild.reset(child);
+        leftChild->setParent(this);
         // (*left.get()).setParent(&this);
     }
 
     void setRightChild(TreeNode *child)
     {
-        (*child).setParent(this);
-
+        // (*child).setParent(this);
         rightChild.reset(child);
+        rightChild->setParent(this);
         // (*right.get()).setParent(&this);
     }
 
+    /* https://www.tutorialspoint.com/cplusplus/cpp_member_operators.htm */
     ostream &write(ostream &out) const
     {
         if (leftChild.get())
         {
-            (*leftChild.get()).write(out);
+            leftChild->write(out);
         }
         out << ' ' << data << ' ';
         if (rightChild.get())
         {
-            (*rightChild.get()).write(out);
+            rightChild->write(out);
         }
         return out;
     }
