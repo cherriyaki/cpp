@@ -82,6 +82,7 @@ public:
         else
             nxt->previous = prev;
         delete pos;
+        count--;
         return NodeIterator<T>(nxt);
     }
 
@@ -122,12 +123,12 @@ public:
         // delete temp;
     }
 
-    T &front()
+    const T &front() const
     {
         return head->data;
     }
 
-    T &back()
+    const T &back() const
     {
         return tail->data;
     }
