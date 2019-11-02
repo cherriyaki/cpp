@@ -5,6 +5,9 @@
 
 #include <utility>
 
+#include <initializer_list>
+using std::initializer_list;
+
 // Do not add any #include statements here.  If you have a convincing need for adding a different `#include` please post in the forum on KEATS.
 
 // TODO your code goes here:
@@ -22,6 +25,15 @@ public:
     LinkedList()
         : head(nullptr), tail(nullptr), count(0) {}
 
+    LinkedList(initializer_list<T> inL)
+        : head(nullptr), tail(nullptr), count(0)
+    {
+        for (T e : inL)
+        {
+            push_back(e);
+        }
+    }
+
     ~LinkedList()
     {
         Node<T> *current = head;
@@ -32,6 +44,45 @@ public:
             delete current;
             current = next;
         }
+    }
+
+    NodeIterator<T> insert(NodeIterator<T> inIt, T inData)
+    {
+        Node<T> *temp = new Node<T>(inData);
+        Node<T> *pos = inIt.getPtr();
+        Node<T> *prev = pos->previous;
+        temp->next = pos;
+        temp->previous = prev;
+        pos->previous = temp;
+        if (prev == nullptr)
+        {
+            head = temp;
+        }
+        else
+            prev->next = temp;
+        count++;
+        return NodeIterator<T>(temp);
+    }
+
+    NodeIterator<T> erase(NodeIterator<T> inIt)
+    {
+        Node<T> *pos = inIt.getPtr();
+        Node<T> *prev = pos->previous;
+        Node<T> *nxt = pos->next;
+        if (prev == nullptr)
+        {
+            head = nxt;
+        }
+        else
+            prev->next = nxt;
+        if (nxt == nullptr)
+        {
+            tail = prev;
+        }
+        else
+            nxt->previous = prev;
+        delete pos;
+        return NodeIterator<T>(nxt);
     }
 
     void push_front(T inData)
@@ -49,6 +100,9 @@ public:
             tail = temp;
         }
         count++;
+        // NOTE https://www.geeksforgeeks.org/delete-in-c/
+        // delete temp;
+        // idk why can't use delete?
     }
 
     void push_back(T inData)
@@ -65,6 +119,7 @@ public:
         }
         tail = temp;
         count++;
+        // delete temp;
     }
 
     T &front()
